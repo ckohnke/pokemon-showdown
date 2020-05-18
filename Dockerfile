@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:10
 EXPOSE 8000
 
 WORKDIR /usr/src/pokemon-showdown
@@ -9,4 +9,4 @@ COPY config/* /config/
 
 RUN ./pokemon-showdown
 
-CMD ["node","pokemon-showdown"]
+CMD ["./pokemon-showdown"]
