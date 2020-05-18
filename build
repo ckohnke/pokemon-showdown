@@ -112,13 +112,13 @@ replace('./tools/set-import/importer.js', [
 // Make sure config.js exists. If not, copy it over synchronously from
 // config-example.js, since it's needed before we can start the server
 try {
-	require.resolve('./config/config');
+	require.resolve('/config/config');
 } catch (err) {
 	if (err.code !== 'MODULE_NOT_FOUND') throw err; // should never happen
 
 	console.log('config.js does not exist. Creating one with default settings...');
 	fs.writeFileSync(
-		'config/config.js',
+		'/config/config.js',
 		fs.readFileSync('config/config-example.js')
 	);
 }
