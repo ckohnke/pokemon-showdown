@@ -16,24 +16,24 @@ before('initialization', function () {
 	// Load and override configuration before starting the server
 	let config;
 	try {
-		require.resolve('../config/config');
+		require.resolve('/config/config');
 	} catch (err) {
 		if (err.code !== 'MODULE_NOT_FOUND' && err.code !== 'ENOENT') throw err; // Should never happen
 
 		console.log("config.js doesn't exist - creating one with default settings...");
 		fs.writeFileSync(
-			path.resolve(__dirname, '../config/config.js'),
+			path.resolve(__dirname, '/config/config.js'),
 			fs.readFileSync(path.resolve(__dirname, '../config/config-example.js'))
 		);
 	} finally {
-		config = require('../config/config');
+		config = require('/config/config');
 	}
 	require('./../.lib-dist/process-manager').disabled = true;
 
 	Object.assign(config, require('../config/config-example'));
 	// stop chatrooms from loading through modifying the require cache
 	try {
-		const chatrooms = require('../config/chatrooms.json');
+		const chatrooms = require('/config/chatrooms.json');
 		chatrooms.splice(0, chatrooms.length);
 	} catch (e) {}
 
