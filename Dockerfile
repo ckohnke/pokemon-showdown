@@ -1,13 +1,18 @@
-FROM node:14
+FROM node:12
 RUN apt-get update && apt-get install -y nano && apt-get clean
 
 WORKDIR /usr/src/pokemon-showdown
 
-COPY * ./
-VOLUME /config
-COPY config/* /config/
-
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 RUN npm install
+
+# Bundle app source
+COPY . .
+VOLUME /config
+COPY config/ /config/
 
 EXPOSE 8000
 CMD ["node","pokemon-showdown"]
