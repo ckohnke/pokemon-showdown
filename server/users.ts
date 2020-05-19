@@ -176,7 +176,7 @@ const usergroups = Object.create(null);
 function importUsergroups() {
 	// can't just say usergroups = {} because it's exported
 	for (const i in usergroups) delete usergroups[i];
-	return FS('/config/usergroups.csv').readIfExists().then(data => {
+	return FS('config/usergroups.csv').readIfExists().then(data => {
 		for (const row of data.split("\n")) {
 			if (!row) continue;
 			const cells = row.split(",");
@@ -189,7 +189,7 @@ function exportUsergroups() {
 	for (const i in usergroups) {
 		buffer += usergroups[i].substr(1).replace(/,/g, '') + ',' + usergroups[i].charAt(0) + "\n";
 	}
-	return FS('/config/usergroups.csv').write(buffer);
+	return FS('config/usergroups.csv').write(buffer);
 }
 void importUsergroups();
 
