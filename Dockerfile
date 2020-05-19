@@ -11,7 +11,7 @@ RUN npm install
 
 # Bundle app source
 COPY . .
-# VOLUME /pokemon-showdown
+VOLUME /pokemon-showdown
 
 EXPOSE 8000
 CMD ["node","pokemon-showdown"]
