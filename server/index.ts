@@ -87,12 +87,12 @@ void Monitor.version().then((hash: any) => {
 });
 
 if (Config.watchconfig) {
-	FS(require.resolve('/config/config')).onModify(() => {
+	FS(require.resolve('config/config')).onModify(() => {
 		try {
 			global.Config = ConfigLoader.load(true);
-			Monitor.notice('Reloaded /config/config.js');
+			Monitor.notice('Reloaded config/config.js');
 		} catch (e) {
-			Monitor.adminlog("Error reloading /config/config.js: " + e.stack);
+			Monitor.adminlog("Error reloading config/config.js: " + e.stack);
 		}
 	});
 }
